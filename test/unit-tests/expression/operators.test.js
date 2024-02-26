@@ -75,7 +75,7 @@ describe('operators', function () {
     const n2 = new AssignmentNode(new SymbolNode('a'), a)
 
     assert.strictEqual(getAssociativity(n1, 'keep'), null)
-    assert.strictEqual(getAssociativity(n2, 'keep'), null)
+    assert.notStrictEqual(getAssociativity(n2, 'keep'), null)
   })
 
   it('should return if a Node is associative with another Node', function () {

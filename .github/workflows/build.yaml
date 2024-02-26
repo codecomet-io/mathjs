@@ -25,7 +25,7 @@ jobs:
       - name: Ingest JUnit
         uses: codecomet-io/setup-and-run@v1.3
         env:
-          # You can save the CODECOMET_API_KEY in your repo's secrets:
+          # You can save the CODECOMET_API_KEY in your repo's secrets
           CODECOMET_API_KEY: ${{ secrets.CODECOMET_API_KEY }}
         with:
           # Your test command

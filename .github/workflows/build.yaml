@@ -11,20 +11,26 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
-
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 20.x
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20.x
       - run: npm ci
-      - run: npm run test:src
+      - run: npm run test:src -- --reporter mocha-junit-reporter
         env:
           CI: true
+    # Add an action to run your tests with the CodeComet action:
+      - name: Ingest JUnit
+        uses: codecomet-io/setup-and-run@v1.3
+        env:
+          # You can save the CODECOMET_API_KEY in your repo's secrets:
+          CODECOMET_API_KEY: ${{ secrets.CODECOMET_API_KEY }}
+        with:
+          # Your test command
+          junit_file: test-results.xml
+          test_suite_name: Math unit tests
 
   lint:
     runs-on: ubuntu-latest

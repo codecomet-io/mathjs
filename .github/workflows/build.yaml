@@ -30,7 +30,7 @@ jobs:
         with:
           # Your test command
           junit_file: test-results.xml
-          test_suite_name: Math unit tests
+          test_suite_name: Mathjs unit tests
 
   lint:
     runs-on: ubuntu-latest
